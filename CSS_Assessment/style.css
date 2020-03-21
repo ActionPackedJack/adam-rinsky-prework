@@ -1,0 +1,32 @@
+header{
+    background: grey;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+#left{
+    background: blue;
+    float: left;
+    width: 50%;
+    height: 400px;
+    line-height: 400px;
+    text-align: center;
+}
+
+#right{
+    background: red;
+    float: right;
+    width: 25%;
+    height: 400px;
+    line-height: 400px;
+    text-align: center;
+}
+
+footer{
+    background: green;
+    text-align: center;
+    float: bottom;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
