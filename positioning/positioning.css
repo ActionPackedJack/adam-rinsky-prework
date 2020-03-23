@@ -1,0 +1,18 @@
+#absolute{
+    position: absolute;
+    background-color: #999;
+}
+#fixed{
+    position: fixed;
+    background-color: #eee;
+}
+#relative{
+    position: relative;
+    background-color: #eee;
+    left: 50px;
+}
+wrapper{
+    margin-left:100px;
+    margin-right: 100px;
+    width: 300px;
+}
