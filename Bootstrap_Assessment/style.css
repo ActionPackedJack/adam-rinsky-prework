@@ -1,0 +1,30 @@
+body {
+  margin: 0;
+  line-height: 1.5;
+  text-transform: uppercase;
+  /* text-align:center; */
+}
+.jumbotron{
+  background-color: #79B9C6 !important;
+}
+h1{
+  color:white;
+  font-size: 40px;
+  font-family:"arial";
+  font-weight: bold;
+  margin-bottom:20px;
+}
+#fancy{
+  color:black;
+  font-size:10px;
+}
+a{
+  text-decoration: none;
+  padding:5px;
+}
+#FDM{
+  /* vertical-align: top; */
+  /* text-align: left; */
+  color: white;
+  font-weight: bold;
+}
