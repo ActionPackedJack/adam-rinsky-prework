@@ -3,11 +3,14 @@ body, a{
     color: #777777;
     line-height: 2;
 }
+body{
+    background-image: url("../images/repeated-square.png");
+}
 #row{
     display: inline-block;
 }
 navbar{
-    border-bottom: #cccccc solid 50px;
+    background-color: white;
 }
 h1{
     background-color: #4aaaa5;
@@ -29,6 +32,9 @@ footer{
     left: 0px;
     width: 150px;
     float: left;
+}
+.main-content{
+    background-color: white;
 }
 @media screen and (min-width: 576px){
     body{
