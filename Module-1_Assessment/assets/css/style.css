@@ -30,3 +30,9 @@ footer{
     width: 150px;
     float: left;
 }
+@media screen and (min-width: 576px){
+    body{
+        margin-left:150px;
+        margin-right:150px;
+    }
+}
