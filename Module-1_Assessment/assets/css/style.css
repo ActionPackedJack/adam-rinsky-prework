@@ -11,6 +11,8 @@ body, a{
 }
 .backgroundright{
     float: right;
+    position: relative;
+    right: 0;
 }
 #row{
     display: inline-block;
@@ -41,17 +43,19 @@ footer{
     left: 0px;
     width: 150px;
     float: left;
+    margin-right: 17px;
 }
 .main-content{
     float: center;
     background-color: white;
-    width: 960px;
+    /* width: 960px; */
     border-color: #dddddd;
     border-width: 3px;
     border-style:  solid;
 }
 .margin-vertical{
-    height: 100px;
+    height: 200px;
+    background-image: url("../images/repeated-square.png");
 }
 @media screen and (min-width: 576px){
     body{
