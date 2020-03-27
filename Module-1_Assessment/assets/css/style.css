@@ -3,8 +3,14 @@ body, a{
     color: #777777;
     line-height: 2;
 }
-body{
+.backgroundleft, .backgroundright{
     background-image: url("../images/repeated-square.png");
+}
+.backgroundleft{
+    float: left;
+}
+.backgroundright{
+    float: right;
 }
 #row{
     display: inline-block;
@@ -34,7 +40,15 @@ footer{
     float: left;
 }
 .main-content{
+    float: center;
     background-color: white;
+    width: 960px;
+    border-color: #dddddd;
+    border-width: 3px;
+    border-style:  solid;
+}
+.margin-vertical{
+    height: 100px;
 }
 @media screen and (min-width: 576px){
     body{
