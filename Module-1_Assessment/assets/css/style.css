@@ -3,6 +3,10 @@ body, a{
     color: #777777;
     line-height: 2;
 }
+hr{
+    margin-left: 10px;
+    margin-right: 10px;
+}
 .backgroundleft, .backgroundright{
     background-image: url("../images/repeated-square.png");
 }
