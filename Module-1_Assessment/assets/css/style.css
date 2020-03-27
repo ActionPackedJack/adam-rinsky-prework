@@ -32,6 +32,8 @@ footer{
     background-color: #666666;
     color: white;
     vertical-align: bottom;
+    text-align: center;
+    text-align: bottom;
 }
 #profilepic{
     position: relative;
