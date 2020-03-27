@@ -53,6 +53,9 @@ footer{
     border-width: 3px;
     border-style:  solid;
 }
+.portfolio-pic{
+    width: 30%;
+}
 .margin-vertical{
     height: 200px;
     background-image: url("../images/repeated-square.png");
