@@ -28,6 +28,7 @@ h2{
     font-family: 'Georgia', Times, Times New Roman, serif;
 }
 footer{
+    border-top: #4aaaa5 solid 5px;
     background-color: #666666;
     color: white;
     vertical-align: bottom;
