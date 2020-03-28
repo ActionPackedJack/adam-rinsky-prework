@@ -21,6 +21,10 @@ hr{
 #row{
     display: inline-block;
 }
+#message{
+    height: 100px;
+    width: 100%;
+}
 navbar{
     background-color: white;
 }
@@ -56,6 +60,7 @@ footer{
     border-color: #dddddd;
     border-width: 3px;
     border-style:  solid;
+    padding:10px;
 }
 .portfolio-pic{
     position: relative;
@@ -83,7 +88,7 @@ footer{
     /* height: 30%; */
 }
 .margin-vertical{
-    height: 200px;
+    height: 100px;
     background-image: url("../images/repeated-square.png");
 }
 @media screen and (min-width: 576px){
