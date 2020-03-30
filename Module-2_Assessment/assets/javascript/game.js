@@ -46,6 +46,7 @@ let game = {
     partialWord: "",
     answer: undefined,
     setAnswer: function(index){
+        this.guessesRemaining = 15;
         if(index !==0 && this.answer != undefined){
             name.innerText = this.answer.name;
             description.innerText = this.answer.description;
@@ -99,3 +100,5 @@ let game = {
         }
     }
 };
+
+game.setAnswer(0);
