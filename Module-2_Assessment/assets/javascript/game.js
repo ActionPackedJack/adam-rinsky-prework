@@ -46,8 +46,10 @@ let game = {
     partialWord: "",
     answer: undefined,
     setAnswer: function(index){
+        console.log("SETANSWER");
         this.guessesRemaining = 15;
         if(index !==0 && this.answer != undefined){
+            console.log ("Setting display to show " + this.answer.name);
             name.innerText = this.answer.name;
             description.innerText = this.answer.description;
             picture.src = this.answer.picture;
@@ -58,8 +60,10 @@ let game = {
             this.partialWord+="_";
         }
         partialWord.innerHTML = this.partialWord;
+        console.log("Current answer: " + this.answer.name);
     },
     nextAnswer: function(){
+        console.log("NEXTANSWER");
         if(this.answer !== answers[answers.length-1]){
             if(this.answer === undefined){
                 this.setAnswer(answers[0]);
@@ -68,15 +72,19 @@ let game = {
                 this.setAnswer(answers[answers.indexOf(this.answer)+1]);
             }
         }
+        console.log("Current answer: ", this.answer);
     },
     win: function(){
+        console.log("Win!");
         this.wins++;
         this.nextAnswer();
     },
     lose: function(){
+        console.log("Lose...");
         this.nextAnswer();
     },
     guessLetter: function(guess){
+        console.log("GUESSING LETTER: " + guess);
         if(this.lettersGuessed.indexOf(guess)!==-1){
             //let temp = partialWord;
             for(let i = 0; i < this.answer.name.length; i ++){
@@ -102,3 +110,8 @@ let game = {
 };
 
 game.setAnswer(0);
+document.addEventListener('keyup', logKey);
+
+function logKey(e){
+    console.log ("Key pressed: " + e);
+}
