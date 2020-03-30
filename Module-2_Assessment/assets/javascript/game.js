@@ -86,6 +86,7 @@ let game = {
     guessLetter: function(guess){
         console.log("GUESSING LETTER: " + guess);
         if(this.lettersGuessed.indexOf(guess)!==-1){
+            console.log("Letter found");
             //let temp = partialWord;
             for(let i = 0; i < this.answer.name.length; i ++){
                 if(this.answer.name[i] === guess){
@@ -113,5 +114,9 @@ game.setAnswer(0);
 document.addEventListener('keyup', logKey);
 
 function logKey(e){
-    console.log ("Key pressed: " + e);
+    // console.log ("Key pressed. Key data:");
+    // console.log(e.key);
+    if(e.keyCode >= 65 && e.keyCode <= 90){
+        game.guessLetter(e.key);
+    }
 }
