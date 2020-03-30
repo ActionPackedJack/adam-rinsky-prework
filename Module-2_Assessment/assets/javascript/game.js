@@ -6,20 +6,6 @@ const lettersGuessed = document.querySelector("#lettersGuessed");
 const guessesRemaining = document.querySelector("#guessesRemaining");
 const wins = document.querySelector("#wins");
 
-let game = {
-    lettersGuessed: [],
-    wins: 0,
-    answer: "",
-    guessesRemaining: 15,
-    partialWord: ""
-};
-
-let answer = {
-    name: "",
-    picture: undefined,
-    description: undefined
-};
-
 let answers = [
     {name: "Shuriken",
     picture: "../images/shuriken.jpeg",
@@ -51,4 +37,65 @@ let answers = [
     {name: "Kaginawa",
     picture: "../images/kaginawa.jpeg",
     description: "A grappling hook.  Thrown over the side of a wall, so that the user can climb the attached rope."}
-]
+];
+
+let game = {
+    lettersGuessed: [],
+    wins: 0,
+    guessesRemaining: 15,
+    partialWord: "",
+    answer: undefined,
+    setAnswer: function(index){
+        if(index !==0 && this.answer != undefined){
+            name.innerText = this.answer.name;
+            description.innerText = this.answer.description;
+            picture.src = this.answer.picture;
+        }
+        this.answer = this.answers(index);
+        this.partialWord = "";
+        for (let i = 0; i < this.answer.name.length; i++){
+            partialWord+="_";
+        }
+        partialWord.innerHTML = this.partialWord;
+    },
+    nextAnswer: function(){
+        if(this.answer !== answers[answers.length-1]){
+            if(this.answer === undefined){
+                this.setAnswer(answers[0]);
+            }
+            else{               
+                this.setAnswer(answers[answers.indexOf(this.answer)+1]);
+            }
+        }
+    },
+    win: function(){
+        this.wins++;
+        this.nextAnswer();
+    },
+    lose: function(){
+        this.nextAnswer();
+    },
+    guessLetter: function(guess){
+        if(this.lettersGuessed.indexOf(guess)!==-1){
+            //let temp = partialWord;
+            for(let i = 0; i < this.answer.name.length; i ++){
+                if(this.answer.name[i] === guess){
+                    partialWord = partialWord.slice(0, i) + guess + partialWord.slice(i+1, partialWord.length);
+                }
+            }
+            this.lettersGuessed.push(guess);
+            if(partialWord === this.answer.name){
+                this.win();
+            }
+            else{
+                this.guessesRemaining--;
+                if(this.guessesRemaining === 0){
+                    this.lose();
+                }
+                else{
+                    lettersGuessed.innerText = this.lettersGuessed;
+                }
+            }
+        }
+    }
+};
