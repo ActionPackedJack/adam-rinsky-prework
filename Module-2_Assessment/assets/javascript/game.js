@@ -52,10 +52,10 @@ let game = {
             description.innerText = this.answer.description;
             picture.src = this.answer.picture;
         }
-        this.answer = this.answers(index);
+        this.answer = answers[index];
         this.partialWord = "";
         for (let i = 0; i < this.answer.name.length; i++){
-            partialWord+="_";
+            this.partialWord+="_";
         }
         partialWord.innerHTML = this.partialWord;
     },
