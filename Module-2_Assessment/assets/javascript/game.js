@@ -46,7 +46,7 @@ let game = {
     partialWord: "",
     answer: undefined,
     setAnswer: function(index){
-        console.log("SETANSWER");
+        console.log("SETANSWER to index: ", index);
         this.guessesRemaining = 15;
         if(index !==0 && this.answer != undefined){
             console.log ("Setting display to show " + this.answer.name);
@@ -69,7 +69,7 @@ let game = {
                 this.setAnswer(answers[0]);
             }
             else{               
-                this.setAnswer(answers[answers.indexOf(this.answer)+1]);
+                this.setAnswer(answers.indexOf(this.answer)+1);
             }
         }
         console.log("Current answer: ", this.answer);
@@ -85,12 +85,13 @@ let game = {
     },
     guessLetter: function(guess){
         console.log("GUESSING LETTER: " + guess);
-        if(this.lettersGuessed.indexOf(guess)!==-1){
-            console.log("Letter found");
-            //let temp = partialWord;
-            for(let i = 0; i < this.answer.name.length; i ++){
-                if(this.answer.name[i] === guess){
-                    partialWord = partialWord.slice(0, i) + guess + partialWord.slice(i+1, partialWord.length);
+        console.log (this.lettersGuessed.indexOf(guess));
+        if(this.lettersGuessed.indexOf(guess)===-1){
+            if(this.answer.name.indexOf(guess)!==-1){
+                for(let i = 0; i < this.answer.name.length; i ++){
+                    if(this.answer.name[i] === guess){
+                        partialWord.innerText = partialWord.innerText.slice(0, i) + guess + partialWord.innerText.slice(i+1, partialWord.innerText.length);
+                    }
                 }
             }
             this.lettersGuessed.push(guess);
