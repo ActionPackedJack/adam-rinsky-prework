@@ -9,7 +9,7 @@ const wins = document.querySelector("#wins");
 let answers = [
     {name: "Shuriken",
     picture: "../images/shuriken.jpeg",
-    description: "Sharpened metal objects in varying shapes, designed to be thrown at the enemy.  Unlikely to kill the target, used more to injure and distract."},
+    description: "Sharpened metal objects in varying shapes, designed to be thrown at the enemy.  Unlikely to kill the target; used more to injure and distract."},
     {name: "Tabi",
     picture: "../images/tabi.jpeg",
     description: "Split-toed shoes to facilitate finding footholds when climbing."},
@@ -103,7 +103,7 @@ let game = {
                 }
             }
             this.lettersGuessed.push(guess);
-            if(partialWord === this.guessableAnswer){
+            if(partialWord.innerText === this.guessableAnswer){
                 this.win();
             }
             else{
