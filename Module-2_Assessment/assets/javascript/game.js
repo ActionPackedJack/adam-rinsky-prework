@@ -45,6 +45,7 @@ let game = {
     guessesRemaining: 15,
     partialWord: "",
     answer: undefined,
+    guessableAnswer: undefined,
     setAnswer: function(index){
         console.log("SETANSWER to index: ", index);
         this.guessesRemaining = 15;
@@ -55,12 +56,19 @@ let game = {
             picture.src = this.answer.picture;
         }
         this.answer = answers[index];
-        this.partialWord = "";
+        this.guessableAnswer = "";
         for (let i = 0; i < this.answer.name.length; i++){
+            if(this.answer.name[i] !==" "){
+                console.log("Adding " + this.answer.name[i].toLowerCase() +" to guessableAnswer");
+                this.guessableAnswer += this.answer.name[i].toLowerCase();
+            }
+        }
+        this.partialWord = "";
+        for (let i = 0; i < this.guessableAnswer.length; i++){
             this.partialWord+="_";
         }
         partialWord.innerHTML = this.partialWord;
-        console.log("Current answer: " + this.answer.name);
+        console.log("Current answer: " + this.guessableAnswer);
     },
     nextAnswer: function(){
         console.log("NEXTANSWER");
@@ -87,15 +95,15 @@ let game = {
         console.log("GUESSING LETTER: " + guess);
         console.log (this.lettersGuessed.indexOf(guess));
         if(this.lettersGuessed.indexOf(guess)===-1){
-            if(this.answer.name.indexOf(guess)!==-1){
-                for(let i = 0; i < this.answer.name.length; i ++){
-                    if(this.answer.name[i] === guess){
+            if(this.guessableAnswer.indexOf(guess)!==-1){
+                for(let i = 0; i < this.guessableAnswer.length; i ++){
+                    if(this.guessableAnswer[i] === guess){
                         partialWord.innerText = partialWord.innerText.slice(0, i) + guess + partialWord.innerText.slice(i+1, partialWord.innerText.length);
                     }
                 }
             }
             this.lettersGuessed.push(guess);
-            if(partialWord === this.answer.name){
+            if(partialWord === this.guessableAnswer){
                 this.win();
             }
             else{
