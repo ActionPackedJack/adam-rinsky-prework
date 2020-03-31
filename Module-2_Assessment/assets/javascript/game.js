@@ -6,6 +6,7 @@ const lettersGuessed = document.querySelector("#lettersGuessed");
 const guessesRemaining = document.querySelector("#guessesRemaining");
 const wins = document.querySelector("#wins");
 
+var winSound = new Audio ('assets/sounds/shamisen.wav');
 let answers = [
     {name: "Shuriken",
     picture: "assets/images/shuriken.jpeg",
@@ -86,6 +87,7 @@ let game = {
     },
     win: function(){
         console.log("Win!");
+        winSound.play();
         this.wins++;
         wins.innerText = this.wins;
         this.nextAnswer();
