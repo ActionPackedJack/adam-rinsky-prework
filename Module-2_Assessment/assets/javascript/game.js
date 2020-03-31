@@ -49,6 +49,7 @@ let game = {
     setAnswer: function(index){
         console.log("SETANSWER to index: ", index);
         this.guessesRemaining = 15;
+        guessesRemaining.innerText = this.guessesRemaining;
         if(index !==0 && this.answer != undefined){
             console.log ("Setting display to show " + this.answer.name);
             name.innerText = this.answer.name;
@@ -85,6 +86,7 @@ let game = {
     win: function(){
         console.log("Win!");
         this.wins++;
+        wins.innerText = this.wins;
         this.nextAnswer();
     },
     lose: function(){
@@ -108,6 +110,7 @@ let game = {
             }
             else{
                 this.guessesRemaining--;
+                guessesRemaining.innerText = this.guessesRemaining;
                 if(this.guessesRemaining === 0){
                     this.lose();
                 }
@@ -118,7 +121,7 @@ let game = {
         }
     }
 };
-
+wins.innerText = this.wins;
 game.setAnswer(0);
 document.addEventListener('keyup', logKey);
 
