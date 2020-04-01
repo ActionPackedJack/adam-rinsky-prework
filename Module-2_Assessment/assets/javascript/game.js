@@ -1,3 +1,4 @@
+
 const picture = document.querySelector("#picture");
 const name = document.querySelector("#name");
 const description = document.querySelector("#description");
@@ -75,6 +76,8 @@ let game = {
     },
     nextAnswer: function(){
         console.log("NEXTANSWER");
+        this.lettersGuessed = [];
+        lettersGuessed.innerText = this.lettersGuessed;
         if(this.answer !== answers[answers.length-1]){
             if(this.answer === undefined){
                 this.setAnswer(answers[0]);
