@@ -91,6 +91,12 @@ footer{
     height: 100px;
     background-image: url("../images/repeated-square.png");
 }
+#submit{
+    color: white;
+    background-color: #4aaaa5;
+    padding-left: 30px;
+    padding-right: 30px;
+}
 @media screen and (min-width: 576px){
     body{
         margin-left:150px;
