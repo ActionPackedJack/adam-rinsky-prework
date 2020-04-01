@@ -21,9 +21,11 @@ hr{
 #row{
     display: inline-block;
 }
+input[type=text]{
+    width: 100%;
+}
 #message{
     height: 100px;
-    width: 100%;
 }
 navbar{
     background-color: white;
