@@ -131,14 +131,17 @@ let game = {
     },
     scoreReport: function(){
         this.active = false;
+        name.innerText = this.answer.name;
+        description.innerText = this.answer.description;
+        picture.innerHTML = "<img src = '" + this.answer.picture + "' >";
         finalScore.innerText = "Final score : " + this.wins + " of " + answers.length;
         if(this.wins === answers.length){
             finalMessage.innerText = "Wow, you got all of them.  You're either a true ninja master, or as thorough of a nerd as I am.";
         }
-        else if (this.wins > 6){
+        else if (this.wins > 5){
             finalMessage.innerText = "Impressive.  This is far better than I expected anyone to do.";
         }
-        else if(this.wins > 3){
+        else if(this.wins > 2){
             finalMessage.innerText = "Well, you got a few.  This knowledge is pretty obscure, so I'm not expecting people to know very many of these.  I hope you learned something interesting.";
         }
         else{
