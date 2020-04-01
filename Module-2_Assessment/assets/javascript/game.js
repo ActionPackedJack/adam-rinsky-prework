@@ -6,6 +6,8 @@ const partialWord = document.querySelector("#partialWord");
 const lettersGuessed = document.querySelector("#lettersGuessed");
 const guessesRemaining = document.querySelector("#guessesRemaining");
 const wins = document.querySelector("#wins");
+const finalScore = document.querySelector("#finalScore");
+const finalMessage = document.querySelector("#finalMessage");
 
 var winSound = new Audio ('assets/sounds/shamisen.wav');
 let answers = [
@@ -19,7 +21,7 @@ let answers = [
     picture: "assets/images/shinobi_shozoku.jpeg",
     description: "It is unlikely that ninja actually wore these, as it would incriminate them immediately if found.  However, various art from the era proves that this image of them did exist at the time.  This outfit was worn by stage hands in theatrical performances to signify that the audience should ignore them."},
     {name: "Kama",
-    picture: "assets/images/kusarigama",
+    picture: "assets/images/kama.jpg",
     description: "A common farming sickle.  Since peasants were prohibited from carrying weapons, they learned to fight with objects that could be carried inconspicuously."},
     {name: "Kusarigama",
     picture: "assets/images/kusarigama.jpeg",
@@ -42,6 +44,7 @@ let answers = [
 ];
 
 let game = {
+    active: true,
     lettersGuessed: [],
     wins: 0,
     guessesRemaining: 15,
@@ -78,16 +81,16 @@ let game = {
         console.log("NEXTANSWER");
         this.lettersGuessed = [];
         lettersGuessed.innerText = this.lettersGuessed;
-        if(this.answer !== answers[answers.length-1]){
-            if(this.answer === undefined){
+        if(this.answer === answers[answers.length-1]){
+            this.scoreReport();
+        }
+        else if(this.answer === undefined){
                 this.setAnswer(answers[0]);
             }
-            else{               
+        else{               
                 this.setAnswer(answers.indexOf(this.answer)+1);
             }
-        }
-        console.log("Current answer: ", this.answer);
-    },
+        },
     win: function(){
         console.log("Win!");
         winSound.play();
@@ -125,6 +128,22 @@ let game = {
                 }
             }
         }
+    },
+    scoreReport: function(){
+        this.active = false;
+        finalScore.innerText = "Final score : " + this.wins + " of " + answers.length;
+        if(this.wins === answers.length){
+            finalMessage.innerText = "Wow, you got all of them.  You're either a true ninja master, or as thorough of a nerd as I am.";
+        }
+        else if (this.wins > 6){
+            finalMessage.innerText = "Impressive.  This is far better than I expected anyone to do.";
+        }
+        else if(this.wins > 3){
+            finalMessage.innerText = "Well, you got a few.  This knowledge is pretty obscure, so I'm not expecting people to know very many of these.  I hope you learned something interesting.";
+        }
+        else{
+            finalMessage.innerText = "No judgment though.  This is about as esoteric as trivia gets.  But I hope you learned something interesting.";
+        }
     }
 };
 wins.innerText = 0;
@@ -134,7 +153,7 @@ document.addEventListener('keyup', logKey);
 function logKey(e){
     // console.log ("Key pressed. Key data:");
     // console.log(e.key);
-    if(e.keyCode >= 65 && e.keyCode <= 90){
+    if(e.keyCode >= 65 && e.keyCode <= 90 && game.active === true){
         game.guessLetter(e.key);
     }
 }
