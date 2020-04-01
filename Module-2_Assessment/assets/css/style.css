@@ -1,0 +1,47 @@
+body{
+    background-color: black;
+    color: white;
+}
+h1{
+    color: crimson;
+    font-size: 80px;
+    text-align: center;
+    font-family: 'gangOfThree'
+}
+h2{
+    font-size: 20px;
+    text-align: center;
+}
+#guessing, #previousAnswer{
+    border: solid 2px crimson;
+    text-align: center;
+}
+#lastObject{
+    display: inline-block;
+}
+img{
+    width: 40%;
+}
+#partialWord{
+    letter-spacing: 10px;
+    font-size: 50px;
+    font-family: 'hiro';
+}
+#name{
+    font-size:20px;
+    font-weight: bold;
+}
+#endgame{
+    font-size: 20px;
+    text-align: center;
+}
+@font-face{
+    font-family: 'gangOfThree';
+    src: local('go3v2.ttf'),
+    url('../fonts/go3v2.ttf');
+}
+@font-face{
+    font-family: 'hiro';
+    src: local('aAsianHiro.ttf'),
+    url('../fonts/aAsianHiro.ttf');
+}

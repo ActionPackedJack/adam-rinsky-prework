@@ -4,25 +4,33 @@
   <meta charset="UTF-8">
   <title>Ninja Guessing Game</title>
   <link rel='stylesheet' href='assets/css/reset.css'>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel='stylesheet' href='assets/css/style.css'>
 </head>
 
 <body>
+    <div>
+        <h1>Ninja Tool Guessing Game</h1>
+        <h2>Type a letter on your keyboard to begin guessing.</h2>
+        <h2 id = "partialWord"></h2>
+    </div>
     <div id = "endgame">
         <span id = "finalScore">
-        </span> 
+        </span> <br>
         <span id = "finalMessage"></span>
     </div>
-    <div id = "lastObject">
-        <span id = "picture"></span>
-        <span id = "name"></span>
-        <span id = "description"></span>
-    </div>
-    <div id = "guessing">
-        <h2 id = "partialWord"></h2>
-        <h3>Guesses remaining: <span id = "guessesRemaining"></span></h3>
-        <h4>Letters guessed: <span id = "lettersGuessed"></span></h4>
-        <h4>Wins: <span id = "wins"></span></h4>
+    <div class="row">
+        <div class = "col md-6" id = "previousAnswer">
+            <h3>Previous answer</h3>
+            <span id = "picture"></span><br>
+            <span id = "name"></span><br>
+            <span id = "description"></span>
+        </div>
+        <div class = "col-md-6" id = "guessing">
+            <h3>Guesses remaining: <span id = "guessesRemaining"></span></h3>
+            <h4>Letters guessed: <br><span id = "lettersGuessed"></span></h4>
+            <h4>Wins: <span id = "wins"></span></h4>
+        </div>
     </div>
     <script src="assets/javascript/game.js"></script>
 </body>
