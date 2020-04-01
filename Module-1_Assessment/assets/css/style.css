@@ -93,6 +93,13 @@ footer{
     height: 100px;
     background-image: url("../images/repeated-square.png");
 }
+/* .links{
+} */
+.linkSeparator{
+    margin-left: 5px;
+    margin-right: 5px;
+    color: lightgray;
+}
 #submit{
     color: white;
     background-color: #4aaaa5;
