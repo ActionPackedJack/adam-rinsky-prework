@@ -1,4 +1,5 @@
 
+//First, we link variables to our html elements so that we can display our information later.
 const picture = document.querySelector("#picture");
 const name = document.querySelector("#name");
 const description = document.querySelector("#description");
@@ -8,8 +9,9 @@ const guessesRemaining = document.querySelector("#guessesRemaining");
 const wins = document.querySelector("#wins");
 const finalScore = document.querySelector("#finalScore");
 const finalMessage = document.querySelector("#finalMessage");
-
+//Then we establish an audio cue to play when an answer is guessed correctly.
 var winSound = new Audio ('assets/sounds/shamisen.wav');
+//Our answers are stored as an array of objects containing names that need to be guessed, trivia to display when the game reveals them, and file paths that point to images.
 let answers = [
     {name: "Shuriken",
     picture: "assets/images/shuriken.jpeg",
@@ -42,19 +44,27 @@ let answers = [
     picture: "assets/images/kaginawa.jpeg",
     description: "A grappling hook.  Thrown over the side of a wall, so that the user can climb the attached rope."}
 ];
-
+//Then we establish our game object.
 let game = {
+    //Whether or not the game is accepting guesses.
     active: true,
+    //What letters have already been guessed.
     lettersGuessed: [],
+    //How many times the player has guessed correctly.
     wins: 0,
+    //Fairly obvious.
     guessesRemaining: 15,
+    //What part of the word has already been guessed.
     partialWord: "",
     answer: undefined,
+    //How the answer's name will appear in the guessing window, because we don't want spaces or capital letters.
     guessableAnswer: undefined,
     setAnswer: function(index){
-        console.log("SETANSWER to index: ", index);
+        //Resets the number of guesses...
         this.guessesRemaining = 15;
+        //..and update that in the display.
         guessesRemaining.innerText = this.guessesRemaining;
+        //If we're not setting the answer for the first time, the previous answer is displayed for the viewer.
         if(index !==0 && this.answer != undefined){
             console.log ("Setting display to show " + this.answer.name);
             name.innerText = this.answer.name;
@@ -62,79 +72,92 @@ let game = {
             picture.innerHTML = "<img src = '" + this.answer.picture + "' >";
             console.log(picture);
         }
+        //The answer is set on the backend.
         this.answer = answers[index];
+        //The answer is transformed to lowercase and the white space is removed.  The result is stored in a variable the player actually guesses.
         this.guessableAnswer = "";
         for (let i = 0; i < this.answer.name.length; i++){
             if(this.answer.name[i] !==" "){
-                console.log("Adding " + this.answer.name[i].toLowerCase() +" to guessableAnswer");
                 this.guessableAnswer += this.answer.name[i].toLowerCase();
             }
         }
+        //Then an underscore is displayed for each guessable letter.
         this.partialWord = "";
         for (let i = 0; i < this.guessableAnswer.length; i++){
             this.partialWord+="_";
         }
+        //..and we update that in the display.
         partialWord.innerHTML = this.partialWord;
-        console.log("Current answer: " + this.guessableAnswer);
     },
     nextAnswer: function(){
-        console.log("NEXTANSWER");
+        //We reset the letters that have been guessed.
         this.lettersGuessed = [];
+        //..and update that in the display.
         lettersGuessed.innerText = this.lettersGuessed;
+        //If we're already at the last answer, we end the game.
         if(this.answer === answers[answers.length-1]){
             this.scoreReport();
         }
+        //If we're doing this for the first time, we go to the first answer.
         else if(this.answer === undefined){
                 this.setAnswer(answers[0]);
             }
+        //Otherwise, we just cycle to the next one.
         else{               
                 this.setAnswer(answers.indexOf(this.answer)+1);
             }
         },
     win: function(){
-        console.log("Win!");
         winSound.play();
         this.wins++;
         wins.innerText = this.wins;
         this.nextAnswer();
     },
     lose: function(){
-        console.log("Lose...");
         this.nextAnswer();
     },
     guessLetter: function(guess){
-        console.log("GUESSING LETTER: " + guess);
-        console.log (this.lettersGuessed.indexOf(guess));
+        //We first check to see if the player has already guessed this letter.
         if(this.lettersGuessed.indexOf(guess)===-1){
+            //If not, we see whether the guess is in the letter.
             if(this.guessableAnswer.indexOf(guess)!==-1){
+                //If so, we replace every appropriate underscore with the guessed letter.
                 for(let i = 0; i < this.guessableAnswer.length; i ++){
                     if(this.guessableAnswer[i] === guess){
                         partialWord.innerText = partialWord.innerText.slice(0, i) + guess + partialWord.innerText.slice(i+1, partialWord.innerText.length);
                     }
                 }
             }
+            //Then we add the guessed letter to the list of previous guesses.
             this.lettersGuessed.push(guess);
+            //If every letter has been guessed, we run the win codde.
             if(partialWord.innerText === this.guessableAnswer){
                 this.win();
             }
             else{
+                //Then we decrement the remaining guesses, and if we are at 0, hang our heads in shame.
                 this.guessesRemaining--;
                 guessesRemaining.innerText = this.guessesRemaining;
                 if(this.guessesRemaining === 0){
                     this.lose();
                 }
                 else{
+                    //This alphabetizes the guesses before displaying them onscreen.
                     lettersGuessed.innerText = this.lettersGuessed.sort();
                 }
             }
         }
     },
     scoreReport: function(){
+        //This disables new guesses.
         this.active = false;
+        //This displays the final answer.
         name.innerText = this.answer.name;
         description.innerText = this.answer.description;
         picture.innerHTML = "<img src = '" + this.answer.picture + "' >";
+        //This shows the final score.
         finalScore.innerText = "Final score : " + this.wins + " of " + answers.length;
+        //This prints a message based on how well the player did.
         if(this.wins === answers.length){
             finalMessage.innerText = "Wow, you got all of them.  You're either a true ninja master, or as thorough of a nerd as I am.";
         }
@@ -149,13 +172,13 @@ let game = {
         }
     }
 };
+//This initializes everything.
 wins.innerText = 0;
 game.setAnswer(0);
 document.addEventListener('keyup', logKey);
 
 function logKey(e){
-    // console.log ("Key pressed. Key data:");
-    // console.log(e.key);
+    //This checks whether the game is still running, and whether the key pressed is a letter, before reacting further.
     if(e.keyCode >= 65 && e.keyCode <= 90 && game.active === true){
         game.guessLetter(e.key);
     }
