@@ -121,7 +121,7 @@ let game = {
                     this.lose();
                 }
                 else{
-                    lettersGuessed.innerText = this.lettersGuessed;
+                    lettersGuessed.innerText = this.lettersGuessed.sort();
                 }
             }
         }
